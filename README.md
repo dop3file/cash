@@ -1,4 +1,7 @@
 # cash
+
+![Cash logo](./readme/logo.png)
+
 *Cash* - in-memory key-value database written on **Python**. 
 
 Cash includes:
