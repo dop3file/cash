@@ -1,5 +1,4 @@
-
-from src.cash.syntax.lexer import Lexer
+from syntax.lexer import Lexer
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 from typing import Callable
 
-from src.cash.exceptions import NotRequiredToken
-from src.cash.syntax.schemas import TokenPipeline, TokenType, TokenTypes
+from exceptions import NotRequiredToken
+from syntax.schemas import TokenPipeline, TokenType, TokenTypes
 
 
 class Parser:

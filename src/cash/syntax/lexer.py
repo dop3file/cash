@@ -1,7 +1,7 @@
 import re
 from typing import Optional
 
-from src.cash.syntax.schemas import Token, TokenPipeline, TokenTypes
+from syntax.schemas import Token, TokenPipeline, TokenTypes
 
 
 class Lexer:
