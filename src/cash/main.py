@@ -1,5 +1,5 @@
 
-from core.syntax.lexer import Lexer
+from src.cash.syntax.lexer import Lexer
 
 
 if __name__ == "__main__":
