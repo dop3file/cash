@@ -1,10 +1,12 @@
 from dataclasses import dataclass
-from typing import Optional, TypeAlias
+from typing import Optional
+
+from cash.utils import Value
 
 
 @dataclass
 class Record:
-    data: Data
+    data: Value
     ttl: Optional[int]
     last_usage: int
     created_at: int

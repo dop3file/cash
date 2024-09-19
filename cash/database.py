@@ -1,7 +1,7 @@
 import asyncio
 from typing import Callable
 
-from syntax.lexer import Lexer
+from cash.syntax.lexer import Lexer
 
 
 class Database:

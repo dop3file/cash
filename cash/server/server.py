@@ -2,7 +2,7 @@ import asyncio
 
 from loguru import logger
 
-from database import Database
+from cash.database import Database
 
 
 class Server:

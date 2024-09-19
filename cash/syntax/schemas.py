@@ -46,9 +46,3 @@ class TokenTypes:
                 yield self.__getattribute__(var)
 
 
-@dataclass
-class ExecutedCommand:
-    operator: Token
-    args: list[Token]
-
-

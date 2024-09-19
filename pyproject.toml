@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.12"
 loguru = "^0.7.2"
 ruff = "^0.6.5"
+mypy = "^1.11.2"
 
 
 [build-system]
