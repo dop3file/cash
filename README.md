@@ -10,6 +10,8 @@ Cash is single-threaded database, support snapshot savig, with async database se
 
 **Minimum required dependencies!**
 
+**Cash have support Python scripting**
+
 # Installation
 
 ```
