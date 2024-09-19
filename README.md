@@ -8,6 +8,8 @@ This is analog of Redis / Memcached / KeyDB and other.
 
 Cash is single-threaded database, support snapshot savig, with async database server and other cool stuff.
 
+**Minimum required dependencies!**
+
 # Installation
 
 ```
