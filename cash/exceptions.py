@@ -1,6 +1,6 @@
 from functools import wraps
 
-from executor.utils import ExecutorResult
+from cash.executor.utils import ExecutorResult
 
 
 class CustomBaseError(Exception):
@@ -27,9 +27,20 @@ class StorageError(CustomBaseError):
     pass
 
 
-class StorageNotFoundError(CustomBaseError):
+class StorageNotFoundError(StorageError):
     pass
 
+
+class ExecutorError(CustomBaseError):
+    pass
+
+
+class NotEnoughError(CustomBaseError):
+    pass
+
+
+class InvalidArgument(CustomBaseError):
+    pass
 
 def error_handler(func):
     @wraps(func)

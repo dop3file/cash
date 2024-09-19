@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
 
-from executor.utils import ExecutorResult
-from storage.storage import Storage
-from syntax.schemas import Token
-from utils import Key
+from cash.executor.utils import ExecutorResult
+from cash.storage.storage import Storage
+from cash.syntax.schemas import Token
+from cash.exceptions import NotEnoughError, InvalidArgument
 
 
 class ExecutorOperator(ABC):
@@ -12,7 +12,7 @@ class ExecutorOperator(ABC):
 
     @abstractmethod
     def execute(self):
-        raise NotImplemented
+        raise NotImplementedError
 
 
 class GET(ExecutorOperator):
@@ -22,9 +22,12 @@ class GET(ExecutorOperator):
 
     def execute(self) -> ExecutorResult:
         try:
+            # TODO: mypy fixes and finish DATA logic, because .data its token
             record = self._storage.get(self._args[0].data)
             return ExecutorResult(
                 value=record.data
             )
-        except IndexError as e:
-            ...
+        except IndexError:
+            raise NotEnoughError("Not enough arguments for GET operator")
+        except AttributeError:
+            raise InvalidArgument(f"Invalid argument: expected DATA but received {self._args[0].type}")

@@ -15,6 +15,7 @@ class Executor:
 
     def execute(self) -> ExecutorResult:
         logger.debug(self.executed_command)
+        return ExecutorResult()
 
 
 

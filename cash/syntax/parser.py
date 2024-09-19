@@ -40,7 +40,7 @@ class Parser:
     def concrete_required(self, token_type: TokenType) -> int:
         try:
             return self._required(lambda token: token.type == token_type)
-        except NotRequiredToken as e:
+        except NotRequiredToken:
             raise NotRequiredToken(f"Required token not found: expected {token_type.name}")
 
     def operator_required(self) -> int:
