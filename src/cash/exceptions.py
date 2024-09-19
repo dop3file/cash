@@ -8,3 +8,7 @@ class ParserException(CustomBaseException):
 
 class NotRequiredToken(ParserException):
     pass
+
+
+class ValidateError(CustomBaseException):
+    pass

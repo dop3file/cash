@@ -2,9 +2,6 @@ from dataclasses import dataclass
 from typing import Optional, TypeAlias
 
 
-Data: TypeAlias = str | bytes | memoryview
-
-
 @dataclass
 class Record:
     data: Data
