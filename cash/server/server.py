@@ -1,6 +1,7 @@
 import asyncio
 
 from loguru import logger
+import orjson as json
 
 from cash.database import Database
 
@@ -17,8 +18,11 @@ class Server:
     async def handle_client(self, reader, writer):
         request = (await reader.read(self.MESSAGE_LENGTH)).decode(self.ENCODING)
         logger.debug(f"Request: {request}")
-        response = request
-        writer.write(response.encode(self.ENCODING))
+        response = await self.database.execute_command(request)
+        response = response.dict()
+        logger.debug(response)
+        writer.write(json.dumps(response))
+
         await writer.drain()
         writer.close()
 

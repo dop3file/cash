@@ -36,6 +36,7 @@ class TokenPipeline:
 class TokenTypes:
     GET = TokenType("GET", "GET", strong=True, is_operator=True)
     SET = TokenType("SET", "SET", strong=True, is_operator=True)
+    PING = TokenType("PING", "PING", strong=True, is_operator=True)
     WHITESPACE = TokenType("WHITESPACE", r"\s", strong=False, is_operator=False)
     DATA = TokenType("DATA", r"\".*?\"", strong=False, is_operator=False, is_arg=True)
     SEMICOLON = TokenType("SEMICOLON", ";", strong=True, is_operator=False)

@@ -1,9 +1,9 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 from typing import Optional
 
 from cash.exceptions import CustomBaseError
 from cash.syntax.schemas import Token
-from cash.utils import Value, OK_STATUS
+from cash.services import Value, OK_STATUS
 
 
 @dataclass
@@ -17,3 +17,6 @@ class ExecutorResult:
     error: Optional[CustomBaseError] = None
     value: Optional[Value] = None
     log: str = OK_STATUS
+
+    def dict(self):
+        return {k: str(v) for k, v in asdict(self).items()}

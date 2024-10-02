@@ -2,15 +2,16 @@ from typing import Callable
 
 from cash.exceptions import NotRequiredToken
 from cash.syntax.schemas import TokenPipeline, TokenType, TokenTypes, Token
-from cash.executor.utils import Command
+from cash.executor.services import Command
 
 
 class Parser:
-    def __init__(self, token_pipeline: TokenPipeline):
+    def __init__(self):
         self.pos = 0
-        self.tokens = token_pipeline.tokens
+        self.tokens = TokenPipeline([])
 
-    def parse(self) -> Command:
+    def parse(self, token_pipeline: TokenPipeline) -> Command:
+        self.tokens = token_pipeline.tokens
         operator_pos = self.operator_required()
         self.pos = operator_pos
         operator_args = self.find_operator_args()
@@ -29,7 +30,7 @@ class Parser:
         return operator_args
 
     def _required(self, rule: Callable) -> int:
-        pos = self.pos
+        pos: int = self.pos
         while not rule(self.tokens[self.pos]) and pos < len(self.tokens) - 1:
             pos += 1
 

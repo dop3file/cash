@@ -3,7 +3,7 @@ from typing import Optional
 
 from cash.exceptions import StorageNotFoundError
 from cash.storage.schemas import Record
-from cash.utils import singleton, Key, Value
+from cash.services import singleton, Key, Value
 
 
 @singleton

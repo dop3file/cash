@@ -1,4 +1,4 @@
-from cash.utils import Key
+from cash.services import Key
 from cash.exceptions import ValidateError
 
 

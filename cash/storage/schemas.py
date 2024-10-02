@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional
 
-from cash.utils import Value
+from cash.services import Value
 
 
 @dataclass
