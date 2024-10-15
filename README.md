@@ -17,7 +17,7 @@ Cash is single-threaded database, support snapshot savig, with async database se
 ```
 git clone https://github.com/dop3file/cash.git
 docker build -t cash .
-docker run cash -d
+docker run -d -p 8001:8001 --name cash cash
 ```
 
 

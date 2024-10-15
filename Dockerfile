@@ -18,4 +18,6 @@ COPY cash ./cash
 
 RUN poetry install --without dev
 
+EXPOSE 8001
+
 ENTRYPOINT ["poetry", "run", "python", "-m", "cash.main"]
