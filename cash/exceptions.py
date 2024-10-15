@@ -44,3 +44,6 @@ class InvalidOperator(CustomBaseError):
 
 class TypeError(CustomBaseError):
     pass
+
+class EmptyTokensList(CustomBaseError):
+    pass
