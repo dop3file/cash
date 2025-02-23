@@ -29,5 +29,6 @@ docker run -d -p 8001:8001 --name cash cash
  - Pub/Sub
  - Auth
  - CLI
+ - Data types(String, Bool, Float)
 
 
