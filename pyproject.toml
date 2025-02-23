@@ -11,6 +11,10 @@ loguru = "^0.7.2"
 ruff = "^0.6.5"
 mypy = "^1.11.2"
 orjson = "^3.10.7"
+pytest = "^8.3.4"
+pytest-asyncio = "^0.25.3"
+rich = "^13.9.4"
+envparse = "^0.2.0"
 
 
 [build-system]

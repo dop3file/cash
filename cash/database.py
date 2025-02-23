@@ -1,39 +1,22 @@
-import asyncio
-from typing import Callable
+from loguru import logger
 
-from cash.syntax.lexer import Lexer
-from cash.custom_types.injectors import get_type_router_injector
-from cash.executor.executor import Executor
-from cash.executor.services import ExecutorResult
-from cash.storage.storage import Storage
-from cash.syntax.parser import Parser
+from cash.exceptions import CashError
+from cash.misc import CashResult
+from cash.parser import Parser
+from cash.storage import BaseStorage
 
 
-class Database:
-    def __init__(self, lexer: Lexer, parser: Parser, storage: Storage):
-        self.lexer = lexer
-        self.parser = parser
-        self.storage = storage
+class Cash:
+    def __init__(self, parser: Parser, storage: BaseStorage):
+        self._parser = parser
+        self._storage = storage
 
-    async def execute_command(self, input_command: str) -> ExecutorResult:
-        command = self.parser.parse(
-            self.lexer.analyze(input_command)
-        )
-        executor = Executor(
-            command,
-            self.storage,
-            get_type_router_injector()
-        )
-        return executor.execute()
-
-    async def execute_planning_tasks(self):
-        await self.planning_task(lambda: print(1), 1)
-
-    async def planning_task(self, func: Callable, every_n_seconds: int, *args, **kwargs):
-        async def wrapper() -> None:
-            while True:
-                func(*args, **kwargs)
-                await asyncio.sleep(every_n_seconds)
-
-        task = asyncio.create_task(wrapper())
-        await task
+    async def execute_query(self, query: str):
+        try:
+            operator = self._parser.parse(query)
+            result = operator.execute(self._storage)
+        except CashError as e:
+            return CashResult(error=str(e))
+        except Exception as e:
+            return CashResult(error="Server error.")
+        return CashResult(result=result.to_python())
