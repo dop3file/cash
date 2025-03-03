@@ -20,4 +20,14 @@ docker build -t cash .
 docker run -d -p 8001:8001 --name cash cash
 ```
 
+# TODO:
+```
+RDB - [❌]
+AOF - [❌]
+Scripting - [✅]
+Pub/sub - [❌]
+Cluster - [❌]
+Transactions - [❌]
+```
+
 
