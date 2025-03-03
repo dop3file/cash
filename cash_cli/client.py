@@ -1,11 +1,15 @@
 import asyncio
-import json
+from dataclasses import dataclass
 
-import pytest
-import pytest_asyncio
+import orjson as json
 from loguru import logger
 
-from cash.core.parser import Parser
+
+@dataclass
+class Response:
+    error: str
+    message: str
+    result: str
 
 
 class Client:
@@ -16,7 +20,7 @@ class Client:
         self.host = host
         self.port = port
 
-    async def send_request(self, request: str) -> dict:
+    async def send_request(self, request: str) -> Response:
         reader, writer = await asyncio.open_connection(
             self.host,
             self.port
@@ -28,23 +32,7 @@ class Client:
         response_data = await reader.read(self.MESSAGE_LENGTH)
         response = json.loads(response_data.decode(self.ENCODING))
 
-        logger.debug(f"Response: {response}")
-
         writer.close()
         await writer.wait_closed()
 
-        return response
-
-    async def execute_query(self, query_data: dict):
-        """Удобный метод для выполнения запроса."""
-        return await self.send_request(query_data)
-
-
-@pytest_asyncio.fixture()
-async def client() -> Client:
-    return Client(host="0.0.0.0", port=9092)
-
-
-@pytest.fixture()
-def parser():
-    return Parser()
+        return Response(**response)

@@ -1,8 +1,5 @@
-import pytest
-from loguru import logger
-
-from cash.operators import Get, Set
-from cash.parser import Parser
+from cash.core.operators import Get, Set
+from cash.core.parser import Parser
 
 
 def test_parse_get(parser: Parser):

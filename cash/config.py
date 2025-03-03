@@ -6,10 +6,12 @@ from envparse import env
 
 @dataclass
 class Config:
-    HOST = env("host")
-    PORT = env("port")
-    PERSISTENCE_LEVEL: Literal["SNAPSHOT", "LOG", "NOTHING"] = env(
-        "PERSISTENCE_LEVEL", default="NOTHING"
+    HOST = env("CASH_HOST", default="0.0.0.0")
+    PORT = env.int("CASH_PORT", default=9091)
+    PERSISTENCE_MODE: Literal["SNAPSHOT", "AOF", "NOTHING"] = env(
+        "CASH_PERSISTENCE_LEVEL", default="NOTHING"
     )
-    SNAPSHOT_DELAY: int = env("SNAPSHOT_DELAY", default=5)
-
+    SNAPSHOT_DELAY: int = env.int("CASH_SNAPSHOT_DELAY", default=5)
+    AOF_ROTATION_SIZE: str = env("CASH_AOF_ROTATION_SIZE", default="5Mb")
+    AOF_DELAY: int = env.int("CASH_AOF_DELAY", default=1)
+    TTL_DELAY_CHECK: int = env.int("CASH_TTL_DELAY_CHECK", default=1)

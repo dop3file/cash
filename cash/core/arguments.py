@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from enum import StrEnum, auto
 
-from cash.data import DataType
+from cash.core.data_types import DataType
 
 
 class ArgumentType(StrEnum):

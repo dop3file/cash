@@ -4,7 +4,7 @@ from dataclasses import asdict
 from loguru import logger
 import orjson as json
 
-from cash.database import Cash
+from cash.core.database import Cash
 
 
 class Server:
@@ -18,16 +18,16 @@ class Server:
 
     async def handle_client(self, reader, writer):
         request = (await reader.read(self.MESSAGE_LENGTH)).decode(self.ENCODING)
-        logger.debug(f"Request: {request}")
+        logger.info(f"Request: {request}")
         response = await self._cash.execute_query(request)
         response = asdict(response)
-        logger.debug(response)
+        logger.info(response)
         writer.write(json.dumps(response))
         await writer.drain()
         writer.close()
 
     async def run_server(self):
-        logger.debug("Start server")
+        logger.info("Start server")
         server = await asyncio.start_server(self.handle_client, self._host, self._port)
         async with server:
             await server.serve_forever()
